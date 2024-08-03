@@ -28,9 +28,9 @@ songs.get("/:id", async (request, response) => {
   const { id } = request.params;
   const song = await getSong(id);
   if (song) {
-    response.json(song);
+    response.status(200).json(song);
   } else {
-    response.status(404).json({ error: "not found" });
+    response.status(404).json({ error: "Song not found" });
   }
 });
 
@@ -42,7 +42,7 @@ songs.post(
   checkBoolean,
   async (request, response) => {
     const song = await createSong(request.body);
-    response.json(song);
+    response.status(200).json(song);
   }
 );
 
